@@ -1,0 +1,9 @@
+MRN: 12345
+
+HISTORY OF PRESENT ILLNESS: Patient reported wobbly toes in an earlier encounter, for which close
+followup was recommended. Wobbling subsided after 3w of intense inactivity.
+
+BP: 123/mmHg
+LS: 456
+KV: 78xyz
+TREATMENT: Patient will continue to watch Netflix 14h pd.
