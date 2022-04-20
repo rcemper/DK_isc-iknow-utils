@@ -1,4 +1,4 @@
-Class iKnow.Converters.SemiStructured Extends %iKnow.Source.Converter
+Class bdb.iKnow.Converters.SemiStructured Extends %iKnow.Source.Converter
 {
 
 Property ExtractMetadata As %String;

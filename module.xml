@@ -3,11 +3,11 @@
   <Document name="iknow-utils.ZPM">
     <Module>
       <Name>iknow-utils</Name>
-      <Version>0.1.0</Version>
+      <Version>0.2.0</Version>
       <Description>Suite of iKnow utils for common scenarios</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
-      <Resource Name="iKnow.PKG"/>
+      <Resource Name="bdb.iKnow.PKG"/>
     </Module>
   </Document>
 </Export>
