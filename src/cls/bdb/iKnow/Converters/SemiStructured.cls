@@ -1,3 +1,10 @@
+/// <p>Simple <class>%iKnow.Source.Converter</class> implementation that tries to
+/// prevent common key-value-ish patterns from messing up iKnow output.</p>
+/// <p>Accepted parameters:
+/// <ol>
+/// <li>$list or comma-separated list of metadata keys to (try to) extract</li>
+/// </ol>
+/// This class is not designed for superb performance.
 Class bdb.iKnow.Converters.SemiStructured Extends %iKnow.Source.Converter
 {
 
@@ -65,7 +72,7 @@ Method Convert() As %Status
             set ^||IK.ConvDone($i(^||IK.ConvDone)) = ..REBreak.ReplaceAll(nlbr_nlbr_"$1")
 
             if $isobject(..REMeta) {
-                set ..REMeta.Text = $s(i=1:nlbr, 1:"")_data,  // make sure first line keys can be caught
+                set ..REMeta.Text = $s(i=1:nlbr, 1:"")_data_nlbr,  // make sure first line keys can be caught
                     pos = 0
                 while ..REMeta.Locate(pos) {
                     set meta($zstrip(..REMeta.Group(1),"<>W")) = $zstrip(..REMeta.Group(2),"<>W"),

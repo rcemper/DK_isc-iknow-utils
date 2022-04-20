@@ -26,7 +26,7 @@ The `bdb.iKnow.Converters.SemiStructured` class can be used in a `<converter ...
 As a bonus, this Converter can also pick up key values as metadata, by supplying a list of keys as the converter parameter, as shown in the example below:
 
 ```ObjectScript
-USER> set converted = ##class(bdb.iKnow.Converters.SemiStructured).TestFull(str,$lb("MRN","KV","LS"),.meta)
+USER> set converted = ##class(bdb.iKnow.Converters.SemiStructured).TestFull(str,$lb("MRN,KV,LS"),.meta)
 
 USER> zwrite meta
 meta("KV")="78xyz"
