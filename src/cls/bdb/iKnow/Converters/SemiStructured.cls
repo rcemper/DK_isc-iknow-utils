@@ -97,7 +97,7 @@ Method Convert() As %Status
 }
 
 /// Loop through the PPG again and return processed strings.
-Method NexconvertedPart() As %String
+Method NextConvertedPart() As %String
 {
 	set currentIndex = $g(^||IK.ConvDone)
 	set nextIndex = $order(^||IK.ConvDone(currentIndex),1,string)
