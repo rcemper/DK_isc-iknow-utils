@@ -16,7 +16,7 @@ Property REMeta As %Regex.Matcher;
 
 Method %OnNew(params As %String) As %Status [ Private, ServerOnly = 1 ]
 {
-    set ..REBreak = ##class(%Regex.Matcher).%New("[\r\n]+([A-Z ]+:)")
+    set ..REBreak = ##class(%Regex.Matcher).%New("[\r\n]+(([A-Z ]+)|([A-Z]?[a-z]+):)")
 	kill ^||IK.Conv, ^||IK.ConvDone
     quit ##super($g(params))
 }
