@@ -16,7 +16,7 @@ Property REMeta As %Regex.Matcher;
 
 Method %OnNew(params As %String) As %Status [ Private, ServerOnly = 1 ]
 {
-    set ..REBreak = ##class(%Regex.Matcher).%New("[\r\n]+(([A-Z ]+)|([A-Z]?[a-z]+):)")
+    set ..REBreak = ##class(%Regex.Matcher).%New("([\r\n\t]+|( {3,}))(([A-Z ]+)|([A-Z]?[a-z]+)):")
 	kill ^||IK.Conv, ^||IK.ConvDone
     quit ##super($g(params))
 }
@@ -26,7 +26,7 @@ Method SetParams(params As %String) As %Status
     set ..Params = params,
         ..ExtractMetadata = ..GetMetadataKeys($g(params))
     if (..ExtractMetadata'="") {
-        set ..REMeta = ##class(%Regex.Matcher).%New("[\r\n]+("_$lts(..ExtractMetadata,"|")_") *: *([ \S]+)[\r\n]+")
+        set ..REMeta = ##class(%Regex.Matcher).%New("([\r\n\t]+|( {3,}))("_$lts(..ExtractMetadata,"|")_") *: *(\S+ ?)+([\r\n\t]+| {3,})")
     } else {
         set ..REMeta = ""
     }
@@ -69,14 +69,14 @@ Method Convert() As %Status
             quit:i=""
 
             set ..REBreak.Text = data
-            set ^||IK.ConvDone($i(^||IK.ConvDone)) = ..REBreak.ReplaceAll(nlbr_nlbr_"$1")
+            set ^||IK.ConvDone($i(^||IK.ConvDone)) = ..REBreak.ReplaceAll(nlbr_nlbr_"$3:")
 
             if $isobject(..REMeta) {
                 set ..REMeta.Text = $s(i=1:nlbr, 1:"")_data_nlbr,  // make sure first line keys can be caught
                     pos = 0
                 while ..REMeta.Locate(pos) {
-                    set meta($zstrip(..REMeta.Group(1),"<>W")) = $zstrip(..REMeta.Group(2),"<>W"),
-                        pos = ..REMeta.End-1 // make sure we catch overlapping line breaks
+                    set meta($zstrip(..REMeta.Group(3),"<>W")) = $zstrip(..REMeta.Group(4),"<>W"),
+                        pos = ..REMeta.End-$l(..REMeta.Group(5)) // make sure we catch overlapping line breaks
                 }
             }
         }
@@ -84,7 +84,7 @@ Method Convert() As %Status
         if $d(meta) {
             set metaValues = ""
             for i = 1:1:$ll(..ExtractMetadata) {
-                set:$d(meta($li(..ExtractMetadata,i)),value) $li(metaValues,i) = value
+                set metaValues = metaValues_$lb($g(meta($li(..ExtractMetadata,i))))
             }
             do ..SetCurrentMetadataValues(metaValues)
         }
@@ -138,7 +138,7 @@ ClassMethod TestFull(ByRef input As %String, params As %List = "", Output metada
 		quit:$$$ISERR(sc)
 		
 		while 1 {
-			set line = converter.NexconvertedPart()
+			set line = converter.NextConvertedPart()
 			quit:line=""
 			set convertedText = convertedText _ line
 		}
@@ -147,7 +147,7 @@ ClassMethod TestFull(ByRef input As %String, params As %List = "", Output metada
         set metaValues = converter.GetMetadataValues()
         for i = 1:1:$ll(metaKeys) {
             set metadata($li(metaKeys,i)) = $lg(metaValues,i)
-        } 
+        }
 		
 		set converter=""
 		
