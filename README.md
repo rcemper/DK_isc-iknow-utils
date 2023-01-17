@@ -1,8 +1,22 @@
+![Repo-GitHub](https://img.shields.io/badge/dynamic/xml?color=blue&label=IPM%20version&version&prefix=v&query=%2F%2FVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2Fbdeboe%2Fisc-iknow-utils%2Fmain%2Fmodule.xml)
+
+
 # iKnow Utilities
 
-This repository bundles a few reusable IRIS NLP utilities for common scenarios. 
+This repository bundles a few reusable IRIS NLP utilities for common scenarios. You can easily install the bundle using [IPM](https://github.com/intersystems/ipm):
+
+```ObjectScript
+USER> zpm
+
+zpm:USER> install iknow-utils
+```
+
+Alternatively, use `$SYSTEM.OBJ.LoadDir()` passing in the path where you downloaded this repository.
 
 All classes are in a `bdb.iKnow` package to avoid conflicting with existing namespace contents and provided without any warranty. Feel free to report issues through the [GitHub repo](https://github.com/bdeboe/isc-iknow-utils/issues).
+
+For a sample code bundle accessing the iKnow APIs directly from your Python code, please check this related [Github repo](https://github.com/bdeboe/isc-iknow-irispy)
+
 
 ## Converters
 
