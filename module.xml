@@ -3,7 +3,7 @@
   <Document name="iknow-utils.ZPM">
     <Module>
       <Name>iknow-utils</Name>
-      <Version>0.3.0</Version>
+      <Version>0.3.1</Version>
       <Description>Suite of iKnow utils for common scenarios</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
