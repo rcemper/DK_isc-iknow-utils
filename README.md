@@ -59,10 +59,6 @@ Open the terminal in this directory and run:
 ```
 $ docker-compose up -d
 ```
-Run demo exercise
-```
-http://localhost:42773/csp/mem-config/configurator.html
-```
 Test from docker console
 ```
 $ docker-compose exec iris iris session iris
