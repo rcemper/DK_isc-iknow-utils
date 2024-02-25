@@ -9,8 +9,8 @@
     zpm "install vscode-per-namespace-settings"
     zpm "install webterminal"
 
-   // this should be the place for individual application code.
-   zpm "install iknow-utils"
+    // this should be the place for individual application code.
+    zpm "install iknow-utils"
  
-   halt
+    halt
 
